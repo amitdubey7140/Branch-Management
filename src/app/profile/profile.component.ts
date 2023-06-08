@@ -15,7 +15,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./profile.component.scss"],
 })
 export class ProfileComponent implements OnInit {
-  currentUser!: SetAdmin;
+  currentUser!: any;
   setAdmin!: FormGroup;
   popupAction: string = "";
   public get images() {
