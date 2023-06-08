@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Organizations</h1>
+  <a class="btn btn-org-primary" routerLink="add-org">Add Organization</a>
+</div>
+<hr>
+
+<h3 *ngIf="orgList?.length === 0">No Record Found</h3>
+<div class="d-flex flex-wrap align-items-center gap-4 mt-4">
+  <div *ngFor="let org of orgList; index as i" class="card" style="width: 18rem;">
+    <img routerLink="view-org/{{org.orgId}}" [src]="images.CARD_TOP" class="card-img-top" height="100px">
+    <div routerLink="view-org/{{org.orgId}}" class="card-body">
+      <h4 class="card-title">{{org?.orgName}}</h4>
+      <strong>About</strong>
+      <p class="text-nowrap overflow-hidden" style="text-overflow: ellipsis ;">{{org.description? org.description:'NA'}}
+      </p>
+
+      <table class="table">
+        <tr>
+          <th>Branches</th>
+          <td>{{org?.branchList?.length}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-footer text-end">
+      <button routerLink="view-org/{{org.orgId}}" class="btn"><i class="fa-solid fa-eye"></i></button>
+      <button routerLink="update-org/{{org.orgId}}" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+      <button data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+i" class="btn py-0"><i
+          class="fa-solid fa-trash "></i></button>
+      <div class="modal fade" [id]="'staticBackdrop'+i" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+              <h1 class="modal-title fs-2" id="staticBackdropLabel">Delete Organization</h1>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              Are you sure you want to delete {{org?.orgName}}?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-popup" data-bs-dismiss="modal">Close</button>
+              <button type="button" (click)="deleteOrg(org.orgId)" data-bs-dismiss="modal"
+                class="btn btn-popup-close">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

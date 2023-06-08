@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: rgba(14, 15, 15, 0.952);
+    color: white;
+}
+
+:root {
+    --primary: #23b1a0;
+    --secondary: #1cfdfd;
+    --primary-shadow: #269689a2;
+    --icon-color: rgba(255, 255, 255, 0.274);
+    --shadow: rgba(0, 0, 0, 0.493);
+    --palceholder: rgba(255, 255, 255, 0.432);
+    --error: rgb(207, 4, 4);
+    --input-bg: rgba(255, 255, 255, 0.068);
+}
+
+main {
+    height: 100vh;
+    display: flex;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.btn-org-primary {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    transition: all .3s;
+    font-weight: 500;
+}
+.btn-org-secondary {
+    border: 1px solid var(--icon-color);
+    color: var(--icon-color);
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+    transition: all .3s;
+    font-weight: 500;
+}
+
+.btn-org-primary:hover {
+    background: linear-gradient(to bottom, var(--secondary), var(--primary));
+    color: white;
+}
+.btn-org-secondary:hover {
+    border-color: white;
+    color: white;
+}
+
+.btn-org-primary:disabled {
+    pointer-events: all;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+   background: transparent;
+}
+
+.btn:disabled {
+    pointer-events: all;
+    cursor: not-allowed;
+}
+
+.ngx-pagination {
+    display: flex;
+    gap: 5px;
+    color:white;
+}
+.ngx-pagination li a{
+    text-decoration:none;
+    color:white;
+}
+.ngx-pagination .pagination-previous a:hover,
+.ngx-pagination .pagination-next a:hover,
+.ngx-pagination li a:hover,
+.ngx-pagination li.current {
+    color: white;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, var(--secondary), var(--primary));
+    transition: background .3s ease-in-out;
+}
+.btn-show:focus,.btn-show:active{
+    
+    box-shadow: none;
+}
+.btn-show{
+    border: none;
+    width: 50px;
+    z-index: 10;
+}
+
+.form-check-input:checked{
+        background-color: var(--primary);
+            border-color: var(--primary);
+}
+.form-check-input:focus{
+    box-shadow: none;
+}
+.btn-popup {
+    color: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
+}
+.btn-popup:hover{
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+.btn-popup-close{
+    color: rgba(240, 47, 47, 0.774) !important;
+    border: 1px solid rgba(240, 47, 47, 0.774) !important;
+}
+.btn-popup-close:hover{
+    color: black !important;
+    background-color:rgba(240, 47, 47, 0.774) !important;
+}
+
+.toast-error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuNC4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIzIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzg0YzEzLjMgMCAyNCAxMC43IDI0IDI0VjI2NGMwIDEzLjMtMTAuNyAyNC0yNCAyNHMtMjQtMTAuNy0yNC0yNFYxNTJjMC0xMy4zIDEwLjctMjQgMjQtMjR6TTIyNCAzNTJhMzIgMzIgMCAxIDEgNjQgMCAzMiAzMiAwIDEgMSAtNjQgMHoiLz48L3N2Zz4=')
+}
+
+.nav-link {
+    color: white;
+    font-weight: 600;
+    &:hover{
+        color: white;
+        border-color: var(--input-bg);
+    }
+}
+.nav-tabs .nav-link.active{
+    color: white;
+    background: var(--input-bg) ;
+    border-color: var(--input-bg);
+}
+.nav-tabs{
+    border-color: var(--icon-color);
+}

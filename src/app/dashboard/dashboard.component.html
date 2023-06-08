@@ -1,0 +1,154 @@
+  <main>
+ 
+      <app-sidebar></app-sidebar>
+
+    <section class="flex-grow-1 overflow-auto" *ngIf="currentUser.roleType === roles.SUPERADMIN">
+  <div class="row m-0 px-4 mt-5">
+    <div class="col-md-12">
+        <div class="row">
+         <div class="col-4">
+          <div class="dashboard-card">
+            <div style="width: 40%;">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-100 w-100 opacity-50" fill="currentcolor" viewBox="0 0 576 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M208 80c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-8v40H464c30.9 0 56 25.1 56 56v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H464c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-4.4-3.6-8-8-8H312v40h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H256c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V280H112c-4.4 0-8 3.6-8 8v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-30.9 25.1-56 56-56H264V192h-8c-26.5 0-48-21.5-48-48V80z" />
+              </svg>
+            </div>
+            <div class="dashboard-card-body">
+              <p class="m-0">Totel Organization</p>
+              <h1 class="m-0">{{orgList?orgList.length:0}}</h1>
+            </div>
+            <a routerLink="/organization" class="dashboard-card-link"><svg class="h-100 opacity-50" fill="currentcolor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+              </svg></a>
+            <div class="back-color"></div>
+          </div>
+         </div>
+         <div class="col-4">
+          <div class="dashboard-card">
+            <div style="width: 40%;">
+              <svg class="h-100 w-100 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 448 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
+              </svg>
+            </div>
+            <div class="dashboard-card-body">
+              <p class="m-0">Totel <br> Branches</p>
+              <h1 class="m-0">{{branchList?branchList.length:0}}</h1>
+            </div>
+            <a routerLink="/branch" class="dashboard-card-link"><svg class="h-100 opacity-50" fill="currentcolor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+              </svg></a>
+            <div class="back-color"></div>
+          </div>
+         </div>
+         <div class="col-4">
+          <div class="dashboard-card">
+            <div style="width: 40%;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-100 w-100 opacity-50" fill="currentcolor" viewBox="0 0 640 512">
+              <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z" />
+            </svg>
+            </div>
+            <div class="dashboard-card-body">
+              <p class="m-0">Totel Employees</p>
+              <h1 class="m-0">{{totalEmp}}</h1>
+            </div>
+            <a routerLink="/employee" class="dashboard-card-link"><svg class="h-100 opacity-50" fill="currentcolor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+              </svg></a>
+            <div class="back-color"></div>
+          </div>
+         </div>
+        </div>
+    </div>
+  <div class="row">
+    <div class="col-md-6">
+      <apx-chart [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill" [series]="chartOptions.series"
+        [chart]="chartOptions.chart" [labels]="chartOptions.labels" [tooltip]="chartOptions.tooltip" [title]="chartOptions.title" [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis">
+      </apx-chart>
+    </div>
+    <div class="col-md-6">
+      <apx-chart [dataLabels]="chartOptions2.dataLabels" [fill]="chartOptions2.fill" [series]="chartOptions2.series"
+        [chart]="chartOptions2.chart" [labels]="chartOptions2.labels" [tooltip]="chartOptions2.tooltip" [title]="chartOptions2.title" [xaxis]="chartOptions2.xaxis" [yaxis]="chartOptions2.yaxis">
+      </apx-chart>
+    </div>
+  </div>
+</div>
+    </section>
+
+
+
+
+
+    <!-- Admin Dashboard  -->
+  <section class="flex-grow-1 overflow-auto" *ngIf="currentUser.roleType === roles.ADMIN">
+  <div class="row m-0 px-4 mt-5">
+    <div class="col-md-4">
+         <div class="col-12">
+          <div class="dashboard-card">
+            <div style="width: 40%;">
+              <svg class="h-100 w-100 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 448 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
+              </svg>
+            </div>
+            <div class="dashboard-card-body">
+              <p class="m-0">Totel <br> Branches</p>
+              <h1 class="m-0">{{branchList?branchList.length:0}}</h1>
+            </div>
+            <a routerLink="/branch" class="dashboard-card-link"><svg class="h-100 opacity-50" fill="currentcolor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+              </svg></a>
+            <div class="back-color"></div>
+          </div>
+         </div>
+         <div class="col-12">
+          <div class="dashboard-card">
+            <div style="width: 40%;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-100 w-100 opacity-50" fill="currentcolor" viewBox="0 0 640 512">
+              <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z" />
+            </svg>
+            </div>
+            <div class="dashboard-card-body">
+              <p class="m-0">Totel Employees</p>
+              <h1 class="m-0">{{totalEmp}}</h1>
+            </div>
+            <a routerLink="/employee" class="dashboard-card-link"><svg class="h-100 opacity-50" fill="currentcolor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+              </svg></a>
+            <div class="back-color"></div>
+          </div>
+         </div>
+       
+        </div>
+        <div class="col-md-8">
+          <apx-chart [dataLabels]="chartOptions2.dataLabels" [fill]="chartOptions2.fill" [series]="chartOptions2.series"
+            [chart]="chartOptions2.chart" [labels]="chartOptions2.labels" [tooltip]="chartOptions2.tooltip" [title]="chartOptions2.title" [xaxis]="chartOptions2.xaxis" [yaxis]="chartOptions2.yaxis">
+          </apx-chart>
+        </div>
+ 
+</div>
+    </section>
+  </main>

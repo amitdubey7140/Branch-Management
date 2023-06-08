@@ -1,0 +1,80 @@
+
+    <section class="flex-grow-1 overflow-auto px-5 py-3">
+        <div class="mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Employees</h3>
+                <button *ngIf="selectedEmp.length > 0" (click)="viewEmps()" class="btn btn-org-primary py-2">View Employees</button>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <form [formGroup]="fileterForm" class="d-flex align-content-center gap-3"
+                    (ngSubmit)="filterData(fileterForm.value)">
+                    <div *ngIf="orgList">
+                        <label for="orgName" class="mb-1">Organization</label>
+                        <select class="form-select" formControlName="orgId">
+                            <option value="">All</option>
+                            <option *ngFor="let org of orgList" [value]="org.orgId">{{org.orgName}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fromDate" class="mb-1">From</label>
+                        <input [max]="date" type="date" class="form-control" formControlName="fromDate">
+                    </div>
+                    <div>
+                        <label for="toDate" class="mb-1">To</label>
+                        <input type="date" [min]="fileterForm.get('fromDate')?.value" [max]="date" class="form-control"
+                            formControlName="toDate">
+                    </div>
+                    <div class="mt-4 pt-1">
+                        <button class="btn btn-org-primary"
+                            style="padding-top: 0.35rem; padding-bottom: 0.35rem;">Filter</button>
+                    </div>
+                </form>
+                <form #searchForm='ngForm' class="d-flex gap-3">
+                    <input type="text" name="searchTerm" required minlength="3" class="form-control search-input"
+                        ngModel placeholder="Search ...">
+                </form>
+            </div>
+            <hr>
+            <h4 *ngIf="!empList || empList.length === 0 ">No Record Found</h4>
+            <div *ngIf="empList && empList.length !== 0 " style="height: 480px;">
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <!-- <th></th> -->
+                            <th><input class="form-check-input" (change)="selectAll()" [checked]="this.selectedEmp.sort().toString() === this.selectedAll.sort().toString()"  type="checkbox"  id="flexCheckDefault"></th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Organization</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Date Of Joining</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let emp of empList |  paginate: { itemsPerPage: 10, currentPage: pageNo ,totalItems : totelData}">
+                            <td><input class="form-check-input" (change)="selectEmp({empId:emp.empId,empName:emp.empName})" type="checkbox"
+                                    [checked]="selected(emp)" id="flexCheckDefault"></td>
+                            <td>{{emp.empName}}</td>
+                            <td>{{emp.roleType===roles.SUPERADMIN?'SUPER ADMIN':emp.roleType}}</td>
+                            <td>{{emp.organisation?emp.organisation.orgName:'SUPER ADMIN' }}</td>
+                            <td>{{emp.gender}}</td>
+                            <td>{{emp.email}}</td>
+                            <td>{{emp.mobileNo}}</td>
+                            <td>{{emp.dateOfJoin | dateFormat}}</td>
+                            <td>{{emp.salary}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between align-content-center">
+                <p>Total Employees : <strong>{{totelData}}</strong></p>
+                <pagination-controls (pageChange)="onpageChangeApi($event)"></pagination-controls>
+            </div>
+        </div>
+
+    </section>

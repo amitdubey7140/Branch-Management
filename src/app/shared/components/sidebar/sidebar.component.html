@@ -1,0 +1,14 @@
+<section class="sidebar">
+    <div class="text-center mb-3">
+        <img [src]="images.BRAND_LOGO" class="w-75" alt="">
+    </div>
+    <hr>
+    <ul class="side-nav">
+        <li *ngIf="currentUser.roleType === roles.SUPERADMIN || currentUser.roleType === roles.ADMIN"><a routerLink="/dashboard" routerLinkActive="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+        <li *ngIf="currentUser.roleType === roles.SUPERADMIN || currentUser.roleType === roles.ADMIN" ><a routerLink="/organization" routerLinkActive="active"><i class="fa-solid fa-sitemap"></i> {{currentUser.roleType === roles.SUPERADMIN?'Ogranizations':'Ogranization'}}</a></li>
+        <li *ngIf="currentUser.roleType === roles.SUPERADMIN || currentUser.roleType === roles.ADMIN ||  currentUser.roleType === roles.MANAGER"><a routerLink="/branch" routerLinkActive="active"><i class="fa-solid fa-code-branch"></i> {{currentUser.roleType === roles.ADMIN||currentUser.roleType === roles.SUPERADMIN?'Branches':'Branch'}}</a></li>
+        <li *ngIf="currentUser.roleType === roles.SUPERADMIN || currentUser.roleType === roles.ADMIN ||  currentUser.roleType === roles.MANAGER"><a routerLink="/employee" routerLinkActive="active"><i class="fa-solid fa-users"></i> Employees</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active"><i class="fa-solid fa-id-badge"></i> Profile</a></li>
+    </ul>
+    <button (click)="logout()" class="btn btn-logout">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
+</section>

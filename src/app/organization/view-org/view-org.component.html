@@ -1,0 +1,229 @@
+<div class="d-flex gap-4 align-items-center">
+    <a class="btn btn-org-secondary add-org" routerLink="/organization"><i class="fa-solid fa-chevron-left"></i></a>
+    <h1>{{currentOrg?.orgName }}</h1>
+</div>
+<hr>
+
+<div>
+    <strong>About</strong>
+    <p>{{currentOrg?.description}}</p>
+</div>
+<div class="w-25">
+    <p><strong>Admin Details</strong></p>
+    <h3 *ngIf="!admin">No Record Found</h3>
+    <table class="table text-white" *ngIf="admin">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{admin?.empName}}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{admin?.email}}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{admin?.mobileNo}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-org-primary" (click)="setAdminClick()">{{!admin?"Set Admin":'Update Admin'}}</button>
+
+</div>
+<div class="mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3>Branches</h3>
+        <a class="btn btn-org-primary" (click)="popupAction = Comman.ADD_BRANCH">Add Branch</a>
+    </div>
+    <hr>
+    <h4 *ngIf="currentOrg?.branchList.length === 0">No Record Found</h4>
+    <div class="d-flex flex-wrap gap-4">
+        <div *ngFor="let branch of currentOrg?.branchList; index as i" class="card" style="width: 18rem;">
+            <img [src]="images.BRANCH_CARD_TOP" class="card-img-top" height="100px">
+            <div routerLink="/branch/view-branch/{{branch.branchId}}" class="card-body">
+                <h4 class="card-title">{{branch?.branchName}}</h4>
+                <table class="table text-white">
+                    <tr>
+                        <th>Location</th>
+                        <td>{{branch?.location}}</td>
+                    </tr>
+                    <tr>
+                        <th>Employees</th>
+                        <td>{{branch?.employeeList?branch?.employeeList?.length:0}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer text-end">
+                <button routerLink="/branch/view-branch/{{branch.branchId}}" class="btn"><i
+                        class="fa-solid fa-eye"></i></button>
+                <button (click)="editBrnch(branch)" class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+i" class="btn py-0"><i
+                        class="fa-solid fa-trash "></i></button>
+                <div class="modal fade" [id]="'staticBackdrop'+i" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark text-white">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-2" id="staticBackdropLabel">Delete Branch</h1>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                Are you sure you want to delete {{branch?.branchName}}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-popup" data-bs-dismiss="modal">Close</button>
+                                <button type="button" (click)="deleteBranch(branch.branchId)" data-bs-dismiss="modal"
+                                    class="btn btn-popup-close">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="popupAction === Comman.SET_ADMIN">
+    <div class="popup-container">
+        <form [formGroup]="setAdmin" (ngSubmit)="saveAdmin(setAdmin.value)">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Set Admin</h2>
+                <button (click)="popupAction = '';setAdmin.reset()" class="btn btn-close"></button>
+            </div>
+            <div class="mb-3">
+                <label for="empName" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="empName" formControlName="empName">
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('empName')?.touched && setAdmin.get('empName')?.errors?.['required']"><small>Field
+                        is required</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('empName')?.touched && setAdmin.get('empName')?.errors?.['pattern']"><small>Please Enter Valid Name</small></span>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Mobile <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="phone" maxlength="10" formControlName="mobileNo"
+                    (keypress)="onlyNumberAlloewd($event)">
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('mobileNo')?.touched && setAdmin.get('mobileNo')?.errors?.['required']"><small>Field
+                        is required</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('mobileNo')?.touched && setAdmin.get('mobileNo')?.errors?.['pattern']"><small>Please
+                        Enter Valid Mobile Number</small></span>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="email" formControlName="email">
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('email')?.touched && setAdmin.get('email')?.errors?.['required']"><small>Field
+                        is required</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('email')?.touched && setAdmin.get('email')?.errors?.['email']"><small>Please
+                        Enter Valid Email.</small></span>
+            </div>
+                <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    <div class="d-flex gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" [value]="gender.MALE" type="radio" formControlName="gender" id="male">
+                            <label class="form-check-label" for="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" [value]="gender.FEMALE" type="radio" formControlName="gender" id="female">
+                            <label class="form-check-label" for="female">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dateOfJoin" class="form-label">Date Of Join <span class="text-danger">*</span></label>
+                    <input type="date" [max]="date" class="form-control" id="dateOfJoin" formControlName="dateOfJoin">
+                    <span class="text-danger"
+                        *ngIf="setAdmin.get('dateOfJoin')?.touched && setAdmin.get('dateOfJoin')?.errors?.['required']"><small>Field
+                            is required</small></span>
+                </div>
+            <div class="mb-3">
+                <label for="salary" class="form-label">Salary <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="salary" formControlName="salary">
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('salary')?.touched && setAdmin.get('salary')?.errors?.['required']"><small>Field
+                        is required</small></span>
+            </div>
+            <div class="mb-3" *ngIf="!admin">
+                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                <div class="position-relative flex">
+                    <input [type]="show === password.SHOW?'text':'password'" class="form-control" id="password"
+                        formControlName="password">
+                    <button (click)="show === password.SHOW?show=password.HIDE:show=password.SHOW"
+                        class="btn text-black btn-show position-absolute end-0 top-0" type="button">
+                        <i *ngIf="show===password.SHOW" class="fa-sharp fa-solid fa-eye-slash"></i>
+                        <i *ngIf="show===password.HIDE" class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('password')?.touched && setAdmin.get('password')?.errors?.['required']"><small>Field
+                        is required</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('password')?.touched && setAdmin.get('password')?.errors?.['pattern']"><small>Password Should Contain 1 Capital Letter, 1 Spacial Character and 1 Number</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('password')?.touched && setAdmin.get('password')?.errors?.['minlength'] && !setAdmin.get('password')?.errors?.['pattern']"><small>Password
+                        Should Contain Minimum 8 Letters</small></span>
+            </div>
+            <div class="mb-3" *ngIf="!admin">
+                <label for="confirmPassword" class="form-label">Confirm Password <span
+                        class="text-danger">*</span></label>
+                <div class="position-relative flex">
+                    <input [type]="showCo === password.SHOW?'text':'password'" class="form-control" id="confirmPassword"
+                        formControlName="confirmPassword">
+                    <button (click)="showCo === password.SHOW?showCo=password.HIDE:showCo=password.SHOW"
+                        class="btn text-black btn-show position-absolute end-0 top-0" type="button">
+                        <i *ngIf="showCo===password.SHOW" class="fa-sharp fa-solid fa-eye-slash"></i>
+                        <i *ngIf="showCo===password.HIDE" class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('confirmPassword')?.touched && setAdmin.get('confirmPassword')?.errors?.['required']"><small>Field
+                        is required</small></span>
+                <span class="text-danger"
+                    *ngIf="setAdmin.get('confirmPassword')?.touched && setAdmin.errors?.['invalid'] && !setAdmin.get('confirmPassword')?.errors?.['required']"><small>Password
+                        and Confirm Password dose not matched</small></span>
+            </div>
+            <button [disabled]="setAdmin.invalid || setAdmin.pristine" type="submit"
+                class="btn btn-org-primary save-org float-end">Save</button>
+        </form>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="popupAction === Comman.ADD_BRANCH || popupAction === Comman.ADD_BRANCH ">
+    <div class="popup-container">
+
+        <form [formGroup]="addBranch" (ngSubmit)="saveBranch(addBranch.value)">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Add Branch</h2>
+                <button (click)="popupAction = '';addBranch.reset()" class="btn btn-close"></button>
+            </div>
+            <div class="mb-3">
+                <label for="branchName" class="form-label">Branch Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="branchName" formControlName="branchName"
+                    placeholder="Enter Branch Name">
+                <span class="text-danger"
+                    *ngIf="addBranch.get('branchName')?.touched && addBranch.get('branchName')?.errors?.['required']"><small>Field
+                        is required</small></span>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label ">Location <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="location" placeholder="Enter Location"
+                    formControlName="location">
+                <span class="text-danger"
+                    *ngIf="addBranch.get('location')?.touched && addBranch.get('location')?.errors?.['required']"><small>Field
+                        is required</small></span>
+            </div>
+            <button [disabled]="addBranch.invalid || addBranch.pristine" type="submit"
+                class="btn btn-org-primary save-org float-end">Save</button>
+        </form>
+    </div>
+</ng-container>

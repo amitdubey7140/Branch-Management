@@ -1,0 +1,25 @@
+.form-control {
+   border-radius: 0;
+   background-color: var(--input-bg);
+   border: none;
+   color: white;
+   resize: none;
+}
+
+.form-control::placeholder {
+   color: var(--palceholder)
+}
+
+.form-control:focus {
+   box-shadow: none;
+}
+
+form {
+   max-width: 50rem;
+   margin: auto auto;
+
+}
+
+.save-org {
+   width: 9rem;
+}

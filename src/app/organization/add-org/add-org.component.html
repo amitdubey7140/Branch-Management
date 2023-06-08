@@ -1,0 +1,28 @@
+<div class="d-flex gap-4 align-items-center">
+    <a class="btn btn-org-secondary add-org" routerLink="/organization"><i class="fa-solid fa-chevron-left"></i></a>
+    <h1>{{orgId?'Update Organizations':' Add Organizations'}}</h1>
+</div>
+<hr>
+<div class=" mt-4">
+    <form [formGroup]="addOrgForm" (ngSubmit)="saveOrg(addOrgForm.value)">
+        <div class="mb-3">
+            <label for="orgName" class="form-label">Organization Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="orgName" placeholder="Enter Organization Name"
+                formControlName="orgName">
+            <span class="text-danger"
+                *ngIf="addOrgForm.get('orgName')?.touched && addOrgForm.get('orgName')?.errors?.['required']"><small>Field
+                    is required</small></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label ">About Organization <span
+                    class="text-danger">*</span></label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                formControlName="description"></textarea>
+            <span class="text-danger"
+                *ngIf="addOrgForm.get('description')?.touched && addOrgForm.get('description')?.errors?.['required']"><small>Field
+                    is required</small></span>
+        </div>
+        <button [disabled]="addOrgForm.invalid || addOrgForm.pristine" type="submit"
+            class="btn btn-org-primary save-org float-end">Save</button>
+    </form>
+</div>

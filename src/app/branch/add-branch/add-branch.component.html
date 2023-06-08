@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h1>{{branchId?'Update Branch':' Add Branch'}}</h1>
+    <a class="btn btn-org-primary add-org" routerLink="/branch"><i class="fa-solid fa-chevron-left"></i> Back</a>
+</div>
+<hr>
+<div class=" mt-4">
+    <form [formGroup]="addBranchForm" (ngSubmit)="saveBranch(addBranchForm.value)">
+        <div class="mb-3">
+            <label for="branchName" class="form-label">Branch Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="branchName" formControlName="branchName">
+            <span class="text-danger"
+                *ngIf="addBranchForm.get('branchName')?.touched && addBranchForm.get('branchName')?.errors?.['required']"><small>Field
+                    is required</small></span>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="location" formControlName="location">
+            <span class="text-danger"
+                *ngIf="addBranchForm.get('location')?.touched && addBranchForm.get('location')?.errors?.['required']"><small>Field
+                    is required</small></span>
+        </div>
+        <button [disabled]="addBranchForm.invalid || addBranchForm.pristine" type="submit"
+            class="btn btn-org-primary save-org float-end">Save</button>
+    </form>
+</div>

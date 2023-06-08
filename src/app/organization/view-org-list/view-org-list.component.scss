@@ -1,0 +1,20 @@
+.card {
+    background-color: transparent;
+    color: white;
+    box-shadow: 0px 1px 10px var(--shadow);
+}
+
+.card-body table {
+    color: white;
+}
+
+.card-footer .btn {
+    color: white;
+    margin-right: .5rem;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.card-footer .btn:hover {
+    color: var(--primary)
+}

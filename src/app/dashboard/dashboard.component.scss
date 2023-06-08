@@ -1,0 +1,66 @@
+
+.dashboard-card{
+    display: flex;
+    height:14.5rem;
+    padding: 1rem 2rem;
+    gap:3rem;
+    position: relative;
+    margin-bottom: 3rem;
+    box-shadow: 0px 2px 15px var(--shadow);
+}
+
+.dashboard-card-body h1{
+    font-size: 6rem;
+    font-weight: 600;
+}
+.dashboard-card-body {p {
+    font-size:xx-large ;
+    font-weight: 600;
+}}
+.dashboard-card-body{
+    color: var(--primary);
+}
+.dashboard-card-link{
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    height: 4rem;
+    width: 4rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .4rem;
+    border-radius: 50%;
+    color: white;
+}
+
+.dashboard-card {
+    .back-color{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:100%;
+    bottom: 100%;
+    z-index: -10;
+    border-radius: 50%;
+    border-top-left-radius:0 ;
+    background: linear-gradient(to right,var(--secondary),var(--primary));
+    transition: all .3s ease-in-out;
+}
+}
+.dashboard-card:hover .back-color{
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+}
+.dashboard-card:hover{
+    color: black;
+}
+.dashboard-card:hover .dashboard-card-body{
+    color: rgba(0, 0, 0, 0.781);
+}
+.dashboard-card:hover .dashboard-card-link{
+    border-color: rgba(0, 0, 0, 0.5);
+    color: black;
+}

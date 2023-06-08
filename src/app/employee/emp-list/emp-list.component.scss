@@ -1,0 +1,26 @@
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+    border-color: var(--primary);
+}
+
+.search-input,
+.form-select,
+.form-control {
+    background-color: var(--input-bg);
+    color: white;
+    border-color: var(--icon-color);
+}
+
+.search-input::placeholder {
+    color: var(--icon-color);
+}
+
+.form-select option {
+    background: rgba(0, 0, 0, 0.692);
+
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
